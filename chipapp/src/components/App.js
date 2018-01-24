@@ -7,7 +7,7 @@ class App extends Component{
             <div>
                 {/* <GameMessage /> */}
                 <div className="container">
-                    
+                    <GameMessage></GameMessage>
                     
                 </div>
             </div>
