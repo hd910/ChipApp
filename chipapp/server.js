@@ -2,8 +2,15 @@ const io = require('socket.io')();
 
 io.on('connection', (client) => {
   client.on('call', () =>{
-    console.log('client is sending call message to server');
-    client.emit('gameMessage', "Pressed Call");
+    client.emit('gameMessage', "User --- has checked");
+  });
+
+  client.on('fold', () =>{
+    client.emit('gameMessage', "User --- has folded");
+  });
+
+  client.on('raise', () =>{
+    client.emit('gameMessage', "User --- has raised by x");
   });
 });
 

@@ -1,25 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {setGameMessage} from '../actions'
-import openSocket from 'socket.io-client';
-
-const  socket = openSocket('http://localhost:8000');
 
 class GameMessage extends Component{
-    userActionCheck(cb) {
-        socket.on('gameMessage', message => cb(message));
-        socket.emit('call');
-    }
 
     render(){
-        console.log('this.props', this.props)
-
+        var gameMessage = 'This is the game message board';
+        if(this.props.gameMessage.message){
+            gameMessage = this.props.gameMessage.message;
+        }
         return(
-            <div>
-                <h2 onClick={() => this.userActionCheck((message) => this.props.setGameMessage(message))}> CHECK BUTTON 2</h2>
-                 <h2>{this.props.gameMessage.message}</h2> 
-            </div>
-
+            <div className="message">
+                <div className="container message-item">
+                    <span>{gameMessage}</span> 
+                </div>
+            </div> 
         )
     }
 }
@@ -28,4 +22,4 @@ function mapStateToProps(state){
     return state;
 }
 
-export default connect(mapStateToProps, {setGameMessage})(GameMessage);
+export default connect(mapStateToProps, null)(GameMessage);
