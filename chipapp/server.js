@@ -2,17 +2,19 @@ const io = require('socket.io')();
 
 io.on('connection', (client) => {
   client.on('call', () =>{
-    client.emit('gameMessage', "User --- has checked");
+    io.sockets.emit('gameMessage', "User --- has checked");
   });
 
   client.on('fold', () =>{
-    client.emit('gameMessage', "User --- has folded");
+    io.sockets.emit('gameMessage', "User --- has folded");
   });
 
   client.on('raise', () =>{
     client.emit('gameMessage', "User --- has raised by x");
   });
 });
+
+//Note: client.emit just sends to the socket that started it. io.sockets.emit emits to all, socket.broadcast.emit sends to all except one that started it
 
 const port = 8000;
 io.listen(port);

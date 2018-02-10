@@ -7,18 +7,24 @@ const  socket = openSocket('http://localhost:8000');
 
 class UserAction extends Component{
     userActionCheck(cb) {
-        socket.on('gameMessage', message => cb(message));
         socket.emit('call');
     }
 
     userActionFold(cb) {
-        socket.on('gameMessage', message => cb(message));
         socket.emit('fold');
     }
 
     userActionRaise(cb) {
-        socket.on('gameMessage', message => cb(message));
         socket.emit('raise');
+    }
+
+    subscribeToMessage(cb) {
+        socket.on('gameMessage', message => cb(message) );
+    }
+
+    constructor(props){
+        super(props);
+        this.subscribeToMessage((message)=> this.props.setGameMessage(message));
     }
 
     render(){
@@ -26,13 +32,13 @@ class UserAction extends Component{
             <div className="container">
                 <div className="row">
                     <div className="col-12 ">
-                        <div className="btn btn-primary btn-action" onClick={() => this.userActionCheck((message) => this.props.setGameMessage(message))}>CHECK </div>
+                        <div className="btn btn-primary btn-action" onClick={() => this.userActionCheck()}>CHECK </div>
                     </div>
                     <div className="col-6">
-                        <div className="btn btn-primary btn-action" onClick={() => this.userActionFold((message) => this.props.setGameMessage(message))}>FOLD </div>
+                        <div className="btn btn-primary btn-action" onClick={() => this.userActionFold()}>FOLD </div>
                     </div>
                     <div className="col-6">
-                        <div className="btn btn-primary btn-action" onClick={() => this.userActionRaise((message) => this.props.setGameMessage(message))}>ALL IN </div>
+                        <div className="btn btn-primary btn-action" onClick={() => this.userActionRaise()}>ALL IN </div>
                     </div>
                 </div>
                 
