@@ -3,6 +3,12 @@ import {connect} from 'react-redux';
 import {setGameMessage} from '../actions'
 import openSocket from 'socket.io-client';
 
+import white from '../img/White.png';
+import red from '../img/Red.png';
+import orange from '../img/Orange.png';
+import green from '../img/Green.png';
+import black from '../img/Black.png';
+
 const  socket = openSocket('http://localhost:8000');
 
 class UserAction extends Component{
@@ -39,6 +45,35 @@ class UserAction extends Component{
                     </div>
                     <div className="col-6">
                         <div className="btn btn-primary btn-action" onClick={() => this.userActionRaise()}>ALL IN </div>
+                    </div>
+                </div>
+
+
+                <div className="row">
+                    <div className="col user-chip-item">
+                        <div className="btn">
+                            <img src={white}/>
+                        </div>
+                    </div>
+                    <div className="col user-chip-item">
+                        <div className="btn">
+                            <img src={red}/>
+                        </div>
+                    </div>
+                    <div className="col user-chip-item">
+                        <div className="btn">
+                            <img src={orange}/>
+                        </div>
+                    </div>
+                    <div className="col user-chip-item">
+                        <div className="btn">
+                            <img src={green}/>
+                        </div>
+                    </div>
+                    <div className="col user-chip-item">
+                        <div className="btn">
+                            <img src={black}/>
+                        </div>
                     </div>
                 </div>
                 

@@ -10,7 +10,7 @@ io.on('connection', (client) => {
   });
 
   client.on('raise', () =>{
-    client.emit('gameMessage', "User --- has raised by x");
+    io.sockets.emit('gameMessage', "User --- has raised by x");
   });
 });
 
